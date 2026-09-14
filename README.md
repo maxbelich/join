@@ -1,66 +1,99 @@
 # Join
 
-Join is a Kanban board web app built with Angular and Supabase, developed as a training project during the Developer Akademie bootcamp. It lets you organize tasks across columns (To Do, In Progress, Await Feedback, Done), assign them to contacts, and track progress with drag and drop.
+Join is a Kanban board web app built with Angular and Supabase. It was originally developed as a team project during the Developer Akademie bootcamp and is now maintained as my personal portfolio version with its own Supabase backend.
+
+The app allows users to organize tasks across four workflow stages, assign contacts, manage subtasks, and track progress using drag and drop.
 
 ## Features
 
-- Sign up and log in with email and password, or use Guest Login to try the app without creating an account.
-- A summary dashboard showing task counts by status and the next upcoming urgent deadline.
-- A board with four columns. Tasks can be moved between columns with drag and drop, or through a menu on touch devices.
-- Search and filter tasks on the board by title, description, or assigned contact.
-- Add tasks with a title, description, due date, priority, category, assigned contacts, and subtasks.
-- Click any task to open its details, check off subtasks, edit it, or delete it.
-- A contact list grouped alphabetically, with colored initials as avatars. Contacts can be added, edited, and deleted.
-- A help page explaining how the board works.
+- Sign up and log in with email and password
+- Guest Login without creating an account
+- Summary dashboard with task statistics and upcoming deadlines
+- Kanban board with To Do, In Progress, Await Feedback, and Done
+- Drag and drop task management
+- Search tasks by title, description, or assigned contact
+- Create, edit, and delete tasks
+- Priorities, due dates, categories, contacts, and subtasks
+- Create, edit, and delete contacts
+- Realtime updates through Supabase
 
 ## Tech Stack
 
-- Angular 22 (zoneless, Signals)
-- Supabase for authentication, the database, and realtime updates
-- SCSS for styling
+- Angular 22
+- TypeScript
+- SCSS
+- Supabase
+- PostgreSQL
+- Supabase Authentication
+- Supabase Realtime
 
 ## Setup
 
-1. Install dependencies.
+Install dependencies:
 
-    ```bash
-    npm install
-    ```
+```bash
+npm install
+```
 
-2. Create a Supabase project at [supabase.com](https://supabase.com) and open `src/environments/environment.ts` and `src/environments/environment.development.ts`. Replace the placeholder values with your own project URL and anon key, both found in the Supabase dashboard under Project Settings, API.
+Configure your Supabase project in:
 
-    ```ts
-    export const environment = {
-        production: false,
-        supabaseUrl: 'YOUR_SUPABASE_URL',
-        supabaseAnonKey: 'YOUR_SUPABASE_ANON_KEY',
-    };
-    ```
+```text
+src/environments/environment.ts
+src/environments/environment.development.ts
+```
 
-    The database schema (tables and RLS policies) is not included in this repository. Based on the code, the app expects at least these tables: `contacts`, `tasks`, `subtasks`, and `task_contacts` (linking tasks to contacts). They need to be recreated manually in your own Supabase project.
+Example:
 
-3. Start the development server.
+```typescript
+export const environment = {
+  production: false,
+  supabaseUrl: 'YOUR_SUPABASE_URL',
+  supabaseAnonKey: 'YOUR_SUPABASE_PUBLISHABLE_KEY',
+};
+```
 
-    ```bash
-    npm start
-    ```
+The database schema is included in:
 
-    The app runs at `http://localhost:4200`.
+```text
+supabase/migrations/
+```
 
-## Available Scripts
+Link your Supabase project and apply the migration:
 
-- `npm start` runs the development server.
-- `npm run build` creates a production build in `dist/`.
-- `npm test` runs the unit tests with Vitest.
-- `npm run watch` builds the app in watch mode.
+```bash
+supabase link --project-ref YOUR_PROJECT_REFERENCE
+supabase db push
+```
 
-## How to Use the App
+Enable Anonymous Sign Ins and Realtime for:
 
-1. Open the app and either sign up with your name, email, and password, log in with an existing account, or click Guest Login to explore without registering.
-2. After logging in, you land on the summary page, which shows how many tasks are in each status and highlights the next urgent deadline.
-3. Go to the board to see all tasks sorted into four columns. Drag a task card to a different column to change its status, or use the menu option on mobile.
-4. Click the plus button in any column, or go to Add Task, to create a new task. Fill in the title, due date, and category, and optionally set a priority, assign contacts, and add subtasks.
-5. Click any task card to open its details. From there you can check off subtasks, edit the task, or delete it.
-6. Use the search box and the contact filter on the board to quickly find specific tasks.
-7. Go to Contacts to see everyone assigned to tasks. You can add new contacts, edit existing ones, or remove them.
-8. Visit the Help page at any time for a short walkthrough of the board.
+- contacts
+- tasks
+- subtasks
+- task_contacts
+
+Start the application:
+
+```bash
+npm start
+```
+
+The app runs at:
+
+```text
+http://localhost:4200
+```
+
+## Project Background
+
+Join was originally created as a team project during my Fullstack Developer training at Developer Akademie.
+
+This repository is my personal continuation of the project. It uses an independent Supabase backend and database while preserving the original Git history and team project origin.
+
+Original team repository:
+
+https://github.com/Umeyrp/join
+
+## Author
+
+Max Belich
